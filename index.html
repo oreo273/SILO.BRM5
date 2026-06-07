@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SILO Operations</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+body{
+    background:#0b0b0b;
+    color:white;
+}
+header{
+    height:100vh;
+    background:url("https://via.placeholder.com/1920x1080") center/cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.hero{
+    background:rgba(0,0,0,.7);
+    padding:40px;
+    border-radius:10px;
+}
+.hero h1{
+    font-size:70px;
+    color:#00ff88;
+}
+.hero p{
+    margin-top:10px;
+    font-size:20px;
+}
+.arrow-down{
+    margin:20px auto 0;
+    font-size:50px;
+    color:#00ff88;
+    animation:bounce 1.5s infinite;
+}
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(10px);}
+}
+nav{
+    background:#111;
+    padding:20px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+.top-bar{
+    background:#090909;
+    color:#00ff88;
+    text-align:center;
+    padding:10px 0;
+    font-size:16px;
+}
+.top-bar a{
+    color:#00ff88;
+    font-weight:bold;
+    text-decoration:none;
+}
+.admin-btn{
+    margin-left:20px;
+    padding:8px 16px;
+    border:none;
+    border-radius:8px;
+    background:#00ff88;
+    color:#0b0b0b;
+    font-weight:bold;
+    cursor:pointer;
+}
+.admin-btn:hover{
+    background:#22ff9e;
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+}
+nav a:hover{
+    color:#00ff88;
+}
+section{
+    padding:60px 10%;
+}
+h2{
+    color:#00ff88;
+    margin-bottom:20px;
+}
+.card{
+    background:#161616;
+    padding:25px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+.weapon-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+.weapon{
+    background:#161616;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+.weapon img{
+    width:100%;
+    border-radius:8px;
+    margin-bottom:10px;
+}
+.tutorial-link{
+    display:block;
+    background:#161616;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:8px;
+    color:white;
+    text-decoration:none;
+}
+.tutorial-link:hover{
+    background:#222;
+}
+footer{
+    background:#111;
+    text-align:center;
+    padding:20px;
+}
+.staff-section{
+    padding:60px 10%;
+    background:#080808;
+}
+.form-field{
+    margin-top:16px;
+}
+.form-field label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+.form-input,
+.form-textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #333;
+    border-radius:8px;
+    background:#0b0b0b;
+    color:#fff;
+    font-size:14px;
+}
+.form-textarea{
+    resize:vertical;
+}
+.entry-card{
+    background:#0b0b0b;
+    border:1px solid #222;
+    padding:16px;
+    border-radius:10px;
+    margin-bottom:16px;
+}
+.hidden{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="hero">
+        <h1>SILO</h1>
+        <p>Silent • Precise • Lethal</p>
+        <div class="arrow-down">↓</div>
+    </div>
+</header>
+
+<div class="top-bar">
+    Join our Discord: <a href="https://discord.gg/ewnvQXM2F7" target="_blank">discord.gg/ewnvQXM2F7</a>
+</div>
+
+<nav>
+    <a href="#mission">Mission</a>
+    <a href="#divisions">Divisions</a>
+    <a href="#weapons">Weapons</a>
+    <a href="#tutorials">Tutorials</a>
+</nav>
+
+
+
+<section id="mission">
+    <h2>Mission Statement</h2>
+    <div class="card">
+        SILO is an elite tactical organization focused on reconnaissance,
+        precision engagement, force protection, and operational excellence.
+        Our members train continuously to ensure mission success through
+        teamwork, discipline, and professionalism.
+    </div>
+</section>
+
+<section id="divisions">
+    <h2>Divisions</h2>
+    <div class="card">
+        <ul>
+            <li>Special Reconnaissance Division (SRD)</li>
+            <li>1st Marksman Battalion (SRD)</li>
+            <li>1st Armored Warfare Battalion</li>
+            <li>101st Infantry Regiment</li>
+            <li>Air Assault Division</li>
+            <li>122nd Military Police Battalion</li>
+        </ul>
+    </div>
+</section>
+
+<section id="weapons">
+    <h2>Weapons We Use</h2>
+    <div class="weapon-grid">
+        <div class="weapon">
+            <img src="https://via.placeholder.com/400x250?text=M4A1" alt="M4A1">
+            <h3>M4A1</h3>
+        </div>
+        <div class="weapon">
+            <img src="https://via.placeholder.com/400x250?text=Colt+Python" alt="Colt Python">
+            <h3>Colt Python</h3>
+        </div>
+        <div class="weapon">
+            <img src="https://via.placeholder.com/400x250?text=Groza" alt="Groza">
+            <h3>Groza</h3>
+        </div>
+        <div class="weapon">
+            <img src="https://via.placeholder.com/400x250?text=M110" alt="M110">
+            <h3>M110</h3>
+        </div>
+        <div class="weapon">
+            <img src="https://via.placeholder.com/400x250?text=M110A4" alt="M110A4">
+            <h3>M110A4</h3>
+        </div>
+    </div>
+</section>
+
+<section id="tutorials">
+    <h2>Tutorials</h2>
+    <a class="tutorial-link" href="https://www.youtube.com/watch?v=ax9vPY1Pc6I&t=492s" target="_blank">Sniper Guide</a>
+    <a class="tutorial-link" href="https://www.youtube.com/watch?v=CQ1ntgD8714" target="_blank">How To Fly A Helicopter</a>
+    <a class="tutorial-link" href="https://www.youtube.com/watch?v=M8VozkKr3vo" target="_blank">Setting Up Your Rifle</a>
+    <a class="tutorial-link" href="https://www.youtube.com/watch?v=H3SlyFMLIEM" target="_blank">Loadout Guide</a>
+    <a class="tutorial-link" href="https://www.youtube.com/watch?v=AirkGYx5Mwk" target="_blank">HQ Guide</a>
+</section>
+
+<footer>
+    © 2026 SILO Operations
+</footer>
+
+    <div class="card">
+        <h2>Notes</h2>
+        <div id="notes-list"></div>
+    </div>
+
+    <div id="punishments-list-card" class="card">
+        <h2>All Punishments</h2>
+        <div id="punishments-list"></div>
+    </div>
+
+<script>
+let currentUser = null;
+try { currentUser = JSON.parse(localStorage.getItem('siloCurrentUser') || 'null'); } catch (e) { currentUser = null; }
+let broadcastChannel = null;
+try {
+    broadcastChannel = new BroadcastChannel('silo-sync');
+    broadcastChannel.onmessage = () => {
+        renderAllViews();
+    };
+} catch (e) {
+    // BroadcastChannel not available
+}
+
+window.addEventListener('storage', (event) => {
+    if (!event.key) return;
+    if (['siloNotes', 'siloPunishments', 'siloChats', 'siloCurrentUser', 'siloSync'].includes(event.key)) {
+        renderAllViews();
+    }
+});
+
+// staff access removed
+
+function uploadChat() {
+    const text = document.getElementById('chat-text').value.trim();
+    if (!text) {
+        alert('Enter the chat content before uploading.');
+        return;
+    }
+    const author = (currentUser && currentUser.username) ? currentUser.username : 'Guest';
+    const payload = { text, author, time: new Date().toLocaleString() };
+    const chats = getChats();
+    chats.unshift(payload);
+    saveChats(chats);
+    addBackendLog(`Chat uploaded by ${author}.`);
+    document.getElementById('chat-text').value = '';
+    renderChats();
+}
+
+
+function addBackendLog(message) {
+    const logs = JSON.parse(localStorage.getItem('siloBackendLog') || '[]');
+    logs.push({ time: new Date().toLocaleString(), message });
+    localStorage.setItem('siloBackendLog', JSON.stringify(logs.slice(-50)));
+}
+
+function getNotes() {
+    return JSON.parse(localStorage.getItem('siloNotes') || '[]');
+}
+
+function getPunishments() {
+    return JSON.parse(localStorage.getItem('siloPunishments') || '[]');
+}
+
+function broadcastSync() {
+    if (broadcastChannel) {
+        broadcastChannel.postMessage({ type: 'sync' });
+    }
+}
+
+function saveNotes(notes) {
+    localStorage.setItem('siloNotes', JSON.stringify(notes));
+    localStorage.setItem('siloSync', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    broadcastSync();
+}
+
+function savePunishments(punishments) {
+    localStorage.setItem('siloPunishments', JSON.stringify(punishments));
+    localStorage.setItem('siloSync', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    broadcastSync();
+}
+
+function getChats() {
+    return JSON.parse(localStorage.getItem('siloChats') || '[]');
+}
+
+function saveChats(chats) {
+    localStorage.setItem('siloChats', JSON.stringify(chats));
+    localStorage.setItem('siloSync', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+    broadcastSync();
+}
+
+function renderSearchResults() {
+    const searchField = document.getElementById('search-discord');
+    const query = searchField && searchField.value.trim().toLowerCase();
+    if (!query) {
+        return;
+    }
+    const result = document.getElementById('search-results');
+    const punishments = getPunishments().filter(item => item.discord.toLowerCase().includes(query));
+    if (!result) return;
+    if (!punishments.length) {
+        result.innerHTML = '<p>No punishments found for that Discord user.</p>';
+        return;
+    }
+    result.innerHTML = punishments.map(item => `
+        <div class="entry-card">
+            <strong>${item.discord}</strong> • ${item.time}
+            <p><strong>Uploaded by:</strong> ${item.author}</p>
+            <p><strong>Punishment:</strong> ${item.punishment}</p>
+            <p><strong>Supervisor:</strong> ${item.supervisor}</p>
+            <p><strong>Roblox:</strong> ${item.roblox}</p>
+            <p><strong>Notes:</strong> ${item.notes || 'None'}</p>
+        </div>
+    `).join('');
+}
+
+function renderAllViews() {
+    updateCurrentUserDisplay();
+    renderNotes();
+    renderPunishments();
+    renderChats();
+    renderSearchResults();
+}
+
+function renderChats() {
+    const chats = getChats();
+    const adminContainer = document.getElementById('admin-chat-list');
+    const operatorContainer = document.getElementById('operator-chat-list');
+    if (adminContainer) {
+        if (!chats.length) {
+            adminContainer.innerHTML = '<p>No chats uploaded yet.</p>';
+        } else {
+            adminContainer.innerHTML = chats.map((chat, index) => `
+                <div class="entry-card">
+                    <strong>${chat.author}</strong> • ${chat.time}
+                    <p>${chat.text}</p>
+                    <button class="button" style="margin-top:10px; background:#ff5555;" onclick="deleteChat(${index})">Delete Chat</button>
+                </div>
+            `).join('');
+        }
+    }
+    if (operatorContainer) {
+        if (!chats.length) {
+            operatorContainer.innerHTML = '<p>No chats uploaded yet.</p>';
+        } else {
+            operatorContainer.innerHTML = chats.map(chat => `
+                <div class="entry-card">
+                    <strong>${chat.author}</strong> • ${chat.time}
+                    <p>${chat.text}</p>
+                </div>
+            `).join('');
+        }
+    }
+}
+
+function uploadChat() {
+    const text = document.getElementById('chat-text').value.trim();
+    if (!text) {
+        alert('Enter the chat content before uploading.');
+        return;
+    }
+    const author = (currentUser && currentUser.username) ? currentUser.username : 'Guest';
+    const payload = { text, author, time: new Date().toLocaleString() };
+    const chats = getChats();
+    chats.unshift(payload);
+    saveChats(chats);
+    addBackendLog(`Chat uploaded by ${author}.`);
+    document.getElementById('chat-text').value = '';
+    renderChats();
+}
+
+function deleteChat(index) {
+    const chats = getChats();
+    if (!chats[index]) {
+        return;
+    }
+    chats.splice(index, 1);
+    saveChats(chats);
+    renderChats();
+}
+
+function updateCurrentUserDisplay() {
+    const el = document.getElementById('current-user-display');
+    if (!el) return;
+    el.textContent = currentUser ? `Signed in as ${currentUser.username}` : 'Not signed in.';
+}
+
+function renderNotes() {
+    const notes = getNotes();
+    const container = document.getElementById('notes-list');
+    if (!notes.length) {
+        container.innerHTML = '<p>No notes published yet.</p>';
+        return;
+    }
+    container.innerHTML = notes.map((note, index) => `
+        <div class="entry-card">
+            <strong>${note.author}</strong> • ${note.time}
+            <p>${note.text}</p>
+            <button class="button" style="margin-top:10px; background:#ff5555;" onclick="deleteNote(${index})">Delete Note</button>
+        </div>
+    `).join('');
+}
+
+function renderPunishments() {
+    const punishments = getPunishments();
+    const container = document.getElementById('punishments-list');
+    if (!punishments.length) {
+        container.innerHTML = '<p>No punishments recorded yet.</p>';
+        return;
+    }
+    container.innerHTML = punishments.map((item, index) => `
+        <div class="entry-card">
+            <strong>${item.discord}</strong> • ${item.time}
+            <p><strong>Roblox:</strong> ${item.roblox}</p>
+            <p><strong>Punishment:</strong> ${item.punishment}</p>
+            <p><strong>Supervisor:</strong> ${item.supervisor}</p>
+            <p><strong>Notes:</strong> ${item.notes || 'None'}</p>
+            <p><strong>Status:</strong> ${item.status}</p>
+            <p><strong>Uploaded by:</strong> ${item.author}</p>
+            <div style="margin-top:12px;">
+                <button class="button" style="background:#00aaff; margin-right:8px;" onclick="updatePunishmentStatus(${index}, 'Active')">Active</button>
+                <button class="button" style="background:#ffaa00; margin-right:8px;" onclick="updatePunishmentStatus(${index}, 'Appealed')">Appealed</button>
+                <button class="button" style="background:#888; margin-right:8px;" onclick="updatePunishmentStatus(${index}, 'Expired')">Expired</button>
+                <button class="button" style="background:#ff5555;" onclick="updatePunishmentStatus(${index}, 'Under Investigation')">Under Investigation</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// publishNote removed (staff UI removed)
+
+function deleteNote(index) {
+    const notes = getNotes();
+    notes.splice(index, 1);
+    saveNotes(notes);
+    renderNotes();
+}
+
+// publishPunishment removed (staff UI removed)
+
+function updatePunishmentStatus(index, status) {
+    const punishments = getPunishments();
+    if (!punishments[index]) {
+        return;
+    }
+    punishments[index].status = status;
+    savePunishments(punishments);
+    renderAllViews();
+}
+
+function searchPunishments() {
+    const query = document.getElementById('search-discord').value.trim().toLowerCase();
+    const result = document.getElementById('search-results');
+    if (!query) {
+        result.innerHTML = '<p>Enter a Discord username to search.</p>';
+        return;
+    }
+
+    const punishments = getPunishments().filter(item => item.discord.toLowerCase().includes(query));
+    if (!punishments.length) {
+        result.innerHTML = '<p>No punishments found for that Discord user.</p>';
+        return;
+    }
+
+    result.innerHTML = punishments.map(item => `
+        <div class="entry-card">
+            <strong>${item.discord}</strong> • ${item.time}
+            <p><strong>Uploaded by:</strong> ${item.author}</p>
+            <p><strong>Punishment:</strong> ${item.punishment}</p>
+            <p><strong>Supervisor:</strong> ${item.supervisor}</p>
+            <p><strong>Roblox:</strong> ${item.roblox}</p>
+            <p><strong>Notes:</strong> ${item.notes || 'None'}</p>
+        </div>
+    `).join('');
+}
+
+// logout/staff logic removed
+</script>
+
+</body>
+</html>
