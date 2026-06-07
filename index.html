@@ -224,19 +224,19 @@ footer{
     <h2>Weapons We Use</h2>
     <div class="weapon-grid">
         <div class="weapon">
-            <img src="https://via.placeholder.com/400x250?text=M4A1" alt="M4A1">
+            <img src="https://kommodo.ai/i/ESxz417xcdGaU5BHyAEY" alt="M4A1">
             <h3>M4A1</h3>
         </div>
         <div class="weapon">
-            <img src="https://via.placeholder.com/400x250?text=Colt+Python" alt="Colt Python">
+            <img src="https://kommodo.ai/i/2of4FIwOpImZWlU2a16c" alt="Colt Python">
             <h3>Colt Python</h3>
         </div>
         <div class="weapon">
-            <img src="https://via.placeholder.com/400x250?text=Groza" alt="Groza">
+            <img src="https://kommodo.ai/i/rCgOHlFDIjnLFiENBqiu" alt="Groza">
             <h3>Groza</h3>
         </div>
         <div class="weapon">
-            <img src="https://via.placeholder.com/400x250?text=M110" alt="M110">
+            <img src="https://kommodo.ai/i/fNIdkMkHYlcsDhLGnHck" alt="M110">
             <h3>M110</h3>
         </div>
         <div class="weapon">
@@ -258,16 +258,6 @@ footer{
 <footer>
     © 2026 SILO Operations
 </footer>
-
-    <div class="card">
-        <h2>Notes</h2>
-        <div id="notes-list"></div>
-    </div>
-
-    <div id="punishments-list-card" class="card">
-        <h2>All Punishments</h2>
-        <div id="punishments-list"></div>
-    </div>
 
 <script>
 let currentUser = null;
@@ -377,8 +367,6 @@ function renderSearchResults() {
 
 function renderAllViews() {
     updateCurrentUserDisplay();
-    renderNotes();
-    renderPunishments();
     renderChats();
     renderSearchResults();
 }
@@ -446,58 +434,7 @@ function updateCurrentUserDisplay() {
     el.textContent = currentUser ? `Signed in as ${currentUser.username}` : 'Not signed in.';
 }
 
-function renderNotes() {
-    const notes = getNotes();
-    const container = document.getElementById('notes-list');
-    if (!notes.length) {
-        container.innerHTML = '<p>No notes published yet.</p>';
-        return;
-    }
-    container.innerHTML = notes.map((note, index) => `
-        <div class="entry-card">
-            <strong>${note.author}</strong> • ${note.time}
-            <p>${note.text}</p>
-            <button class="button" style="margin-top:10px; background:#ff5555;" onclick="deleteNote(${index})">Delete Note</button>
-        </div>
-    `).join('');
-}
-
-function renderPunishments() {
-    const punishments = getPunishments();
-    const container = document.getElementById('punishments-list');
-    if (!punishments.length) {
-        container.innerHTML = '<p>No punishments recorded yet.</p>';
-        return;
-    }
-    container.innerHTML = punishments.map((item, index) => `
-        <div class="entry-card">
-            <strong>${item.discord}</strong> • ${item.time}
-            <p><strong>Roblox:</strong> ${item.roblox}</p>
-            <p><strong>Punishment:</strong> ${item.punishment}</p>
-            <p><strong>Supervisor:</strong> ${item.supervisor}</p>
-            <p><strong>Notes:</strong> ${item.notes || 'None'}</p>
-            <p><strong>Status:</strong> ${item.status}</p>
-            <p><strong>Uploaded by:</strong> ${item.author}</p>
-            <div style="margin-top:12px;">
-                <button class="button" style="background:#00aaff; margin-right:8px;" onclick="updatePunishmentStatus(${index}, 'Active')">Active</button>
-                <button class="button" style="background:#ffaa00; margin-right:8px;" onclick="updatePunishmentStatus(${index}, 'Appealed')">Appealed</button>
-                <button class="button" style="background:#888; margin-right:8px;" onclick="updatePunishmentStatus(${index}, 'Expired')">Expired</button>
-                <button class="button" style="background:#ff5555;" onclick="updatePunishmentStatus(${index}, 'Under Investigation')">Under Investigation</button>
-            </div>
-        </div>
-    `).join('');
-}
-
-// publishNote removed (staff UI removed)
-
-function deleteNote(index) {
-    const notes = getNotes();
-    notes.splice(index, 1);
-    saveNotes(notes);
-    renderNotes();
-}
-
-// publishPunishment removed (staff UI removed)
+// Notes and punishments UI removed; related render functions are no longer used.
 
 function updatePunishmentStatus(index, status) {
     const punishments = getPunishments();
