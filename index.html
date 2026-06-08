@@ -130,6 +130,24 @@ h2{
 .tutorial-link:hover{
     background:#222;
 }
+.news-list{
+    display:grid;
+    gap:18px;
+}
+.news-item{
+    background:#161616;
+    padding:22px;
+    border-radius:12px;
+    border:1px solid #222;
+}
+.news-item h3{
+    color:#00ff88;
+    margin-bottom:10px;
+}
+.news-item p{
+    line-height:1.6;
+    color:#ddd;
+}
 footer{
     background:#111;
     text-align:center;
@@ -192,6 +210,7 @@ footer{
     <a href="#divisions">Divisions</a>
     <a href="#weapons">Weapons</a>
     <a href="#tutorials">Tutorials</a>
+    <a href="#news">News</a>
 </nav>
 
 
@@ -253,6 +272,22 @@ footer{
     <a class="tutorial-link" href="https://www.youtube.com/watch?v=M8VozkKr3vo" target="_blank">Setting Up Your Rifle</a>
     <a class="tutorial-link" href="https://www.youtube.com/watch?v=H3SlyFMLIEM" target="_blank">Loadout Guide</a>
     <a class="tutorial-link" href="https://www.youtube.com/watch?v=AirkGYx5Mwk" target="_blank">HQ Guide</a>
+</section>
+
+<section id="news">
+    <h2>News</h2>
+    <!-- Copy one of these blocks and paste it here to add another news item -->
+    <div class="news-list">
+        <div class="news-item">
+            <h3>New SILO Operation Announced</h3>
+            <p>Our new reconnaissance mission begins next week. Stay ready and check the Discord for the latest briefing schedule.</p>
+        </div>
+        <div class="news-item">
+            <h3>Recruitment Update</h3>
+            <p>Applications are now open for the 1st Marksman Battalion. Submit your details and prepare for the selection drills.</p>
+        </div>
+    </div>
+    <!-- To add more news: copy the <div class="news-item"> block above, paste it inside .news-list, then change the title and description. -->
 </section>
 
 <footer>
