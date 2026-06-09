@@ -1,514 +1,214 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SILO Operations</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SILO Operations</title>
+  <meta name="theme-color" content="#090b12">
+  <style>
+    :root {
+      --bg: #07090f;
+      --panel: #10141d;
+      --panel-soft: #14192b;
+      --text: #eef4ff;
+      --muted: #9fb4cf;
+      --accent: #3ee296;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+      --radius: 24px;
+    }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-body{
-    background:#0b0b0b;
-    color:white;
-}
-header{
-    height:100vh;
-    background:url("goosey.png") center/cover;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-.hero{
-    background:rgba(0,0,0,.7);
-    padding:40px;
-    border-radius:10px;
-}
-.hero h1{
-    font-size:70px;
-    color:#00ff88;
-}
-.hero p{
-    margin-top:10px;
-    font-size:20px;
-}
-.arrow-down{
-    margin:20px auto 0;
-    font-size:50px;
-    color:#00ff88;
-    animation:bounce 1.5s infinite;
-}
-@keyframes bounce{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(10px);}
-}
-nav{
-    background:#111;
-    padding:20px;
-    text-align:center;
-    position:sticky;
-    top:0;
-    z-index:10;
-}
-.top-bar{
-    background:#090909;
-    color:#00ff88;
-    text-align:center;
-    padding:10px 0;
-    font-size:16px;
-}
-.top-bar a{
-    color:#00ff88;
-    font-weight:bold;
-    text-decoration:none;
-}
-.admin-btn{
-    margin-left:20px;
-    padding:8px 16px;
-    border:none;
-    border-radius:8px;
-    background:#00ff88;
-    color:#0b0b0b;
-    font-weight:bold;
-    cursor:pointer;
-}
-.admin-btn:hover{
-    background:#22ff9e;
-}
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:0 15px;
-    font-weight:bold;
-}
-nav a:hover{
-    color:#00ff88;
-}
-section{
-    padding:60px 10%;
-}
-h2{
-    color:#00ff88;
-    margin-bottom:20px;
-}
-.card{
-    background:#161616;
-    padding:25px;
-    border-radius:10px;
-    margin-bottom:20px;
-}
-.weapon-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-.weapon{
-    background:#161616;
-    padding:20px;
-    border-radius:10px;
-    text-align:center;
-}
-.weapon img{
-    width:100%;
-    border-radius:8px;
-    margin-bottom:10px;
-}
-.tutorial-link{
-    display:block;
-    background:#161616;
-    padding:15px;
-    margin-bottom:15px;
-    border-radius:8px;
-    color:white;
-    text-decoration:none;
-}
-.tutorial-link:hover{
-    background:#222;
-}
-.news-list{
-    display:grid;
-    gap:18px;
-}
-.news-item{
-    background:#161616;
-    padding:22px;
-    border-radius:12px;
-    border:1px solid #222;
-}
-.news-item h3{
-    color:#00ff88;
-    margin-bottom:10px;
-}
-.news-item p{
-    line-height:1.6;
-    color:#ddd;
-}
-footer{
-    background:#111;
-    text-align:center;
-    padding:20px;
-}
-.staff-section{
-    padding:60px 10%;
-    background:#080808;
-}
-.form-field{
-    margin-top:16px;
-}
-.form-field label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-}
-.form-input,
-.form-textarea{
-    width:100%;
-    padding:12px;
-    border:1px solid #333;
-    border-radius:8px;
-    background:#0b0b0b;
-    color:#fff;
-    font-size:14px;
-}
-.form-textarea{
-    resize:vertical;
-}
-.entry-card{
-    background:#0b0b0b;
-    border:1px solid #222;
-    padding:16px;
-    border-radius:10px;
-    margin-bottom:16px;
-}
-.hidden{
-    display:none;
-}
-</style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-height: 100vh; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--text); background: radial-gradient(circle at top, rgba(62, 226, 150, 0.08), transparent 35%), linear-gradient(180deg, #06080e 0%, #04050a 100%); }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; border: none; }
+
+    .top-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; background: rgba(10, 13, 19, 0.92); border-bottom: 1px solid var(--border); color: var(--muted); font-size: 0.95rem; }
+    .top-bar a { color: var(--accent); font-weight: 600; }
+    .top-bar button { margin-left: 1rem; }
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(10, 13, 19, 0.94); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .brand { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent); }
+    .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-left: auto; }
+    .nav-link { color: var(--muted); transition: color 0.25s ease; font-weight: 600; }
+    .nav-link:hover, .nav-link:focus-visible { color: var(--accent); }
+    .hero { position: relative; min-height: 82vh; display: grid; place-items: center; text-align: center; padding: 5rem 1.5rem; background-image: linear-gradient(180deg, rgba(8, 11, 18, 0.65), rgba(8, 11, 18, 0.85)), url('../goosey.png'); background-size: cover; background-position: center; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top center, rgba(62, 226, 150, 0.12), transparent 32%); pointer-events: none; }
+    .hero-content { position: relative; max-width: 860px; padding: 3rem; background: rgba(8, 12, 19, 0.76); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius); box-shadow: var(--shadow); backdrop-filter: blur(8px); animation: fadeIn 0.9s ease both; }
+    .hero-eyebrow { margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; }
+    .hero-title { margin: 0; font-size: clamp(3rem, 5vw, 5rem); line-height: 0.96; letter-spacing: -0.05em; }
+    .hero-copy { margin: 1rem auto 0; max-width: 34rem; color: var(--muted); font-size: 1.1rem; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 1.4rem; border-radius: 999px; font-weight: 700; transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease; }
+    .button:hover, .button:focus-visible { transform: translateY(-1px); box-shadow: 0 18px 50px rgba(62, 226, 150, 0.18); }
+    .button--primary { background: linear-gradient(135deg, var(--accent), #2ed18f); color: #071011; }
+    .button--secondary { background: rgba(255, 255, 255, 0.08); color: var(--text); border: 1px solid rgba(255, 255, 255, 0.12); }
+    main { padding: 4rem 1.5rem 2rem; }
+    .section { margin-bottom: 3rem; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+    .section-title { margin: 0; font-size: clamp(1.7rem, 2vw, 2.6rem); color: var(--accent); letter-spacing: -0.03em; }
+    .card-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 24px; padding: 2rem; box-shadow: var(--shadow); }
+    .card p, .card ul { color: var(--muted); line-height: 1.8; }
+    .card ul { list-style: none; gap: 0.9rem; display: grid; padding-left: 0; margin: 0; }
+    .card li::before { content: '•'; color: var(--accent); display: inline-block; width: 1em; }
+    .weapon-grid, .news-grid { display: grid; gap: 1.5rem; }
+    .weapon-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .weapon-card, .news-card, .tutorial-card { position: relative; background: var(--panel); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow); overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .weapon-card:hover, .news-card:hover, .tutorial-card:hover { transform: translateY(-4px); border-color: rgba(62, 226, 150, 0.3); }
+    .weapon-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+    .weapon-card h3, .news-card h3 { margin: 0; font-size: 1.2rem; color: var(--text); }
+    .card-body { padding: 1.5rem; }
+    .tutorial-card { display: block; padding: 1.5rem; color: var(--text); }
+    .tutorial-card:hover { background: rgba(62, 226, 150, 0.04); }
+    .tutorial-card::after { content: '→'; position: absolute; top: 1.5rem; right: 1.5rem; color: var(--accent); opacity: 0.7; transition: transform 0.25s ease; }
+    .tutorial-card:hover::after { transform: translateX(4px); }
+    .tutorial-card h3 { margin: 0; font-size: 1rem; color: var(--text); }
+    .news-card p { margin: 0.75rem 0 0; color: var(--muted); line-height: 1.8; }
+    footer { padding: 2rem 1.5rem 3rem; text-align: center; color: var(--muted); font-size: 0.95rem; }
+    @media (max-width: 900px) { .card-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) { .nav-inner { justify-content: center; } .hero { padding: 4rem 1.25rem; } .hero-content { padding: 2.5rem; } .section-title { font-size: 2rem; } }
+    @media (max-width: 560px) { .top-bar, .nav-inner, .hero-actions { flex-direction: column; align-items: stretch; } .hero-actions { margin-top: 1.25rem; } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
 </head>
-
 <body>
+  <div class="site-shell">
+    <header class="top-bar">
+      <div>Join our Discord: <a href="https://discord.gg/ewnvQXM2F7" target="_blank" rel="noopener">discord.gg/ewnvQXM2F7</a></div>
+      <button class="button button--primary" type="button" onclick="accessAdmin()">Staff Access</button>
+    </header>
 
-<header>
-    <div class="hero">
-        <h1>SILO</h1>
-        <p>Silent • Precise • Lethal</p>
-        <div class="arrow-down">↓</div>
-    </div>
-</header>
+    <header class="site-header" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <div class="brand">SILO Operations</div>
+        <nav class="nav-links" aria-label="Section navigation">
+          <a class="nav-link" href="#mission">Mission</a>
+          <a class="nav-link" href="#divisions">Divisions</a>
+          <a class="nav-link" href="#weapons">Weapons</a>
+          <a class="nav-link" href="#tutorials">Tutorials</a>
+        </nav>
+      </div>
+    </header>
 
-<div class="top-bar">
-    Need support? Email <a href="mailto:silo.brm5.support@gmail.com">silo.brm5.support@gmail.com</a> or join our Discord: <a href="https://discord.gg/ewnvQXM2F7" target="_blank">discord.gg/ewnvQXM2F7</a>
-</div>
-
-<nav>
-    <a href="#mission">Mission</a>
-    <a href="#divisions">Divisions</a>
-    <a href="#weapons">Weapons</a>
-    <a href="#tutorials">Tutorials</a>
-    <a href="#news">News</a>
-</nav>
-
-
-
-<section id="mission">
-    <h2>Mission Statement</h2>
-    <div class="card">
-        SILO is an elite tactical organization focused on reconnaissance,
-        precision engagement, force protection, and operational excellence.
-        Our members train continuously to ensure mission success through
-        teamwork, discipline, and professionalism.
-    </div>
-</section>
-
-<section id="divisions">
-    <h2>Divisions</h2>
-    <div class="card">
-        <ul>
-            <li>Special Reconnaissance Division (SRD)</li>
-            <li>1st Marksman Battalion (SRD)</li>
-            <li>1st Armored Warfare Battalion</li>
-            <li>101st Infantry Regiment</li>
-            <li>Air Assault Division</li>
-            <li>122nd Military Police Battalion</li>
-        </ul>
-    </div>
-</section>
-
-<section id="weapons">
-    <h2>Weapons We Use</h2>
-    <div class="weapon-grid">
-        <div class="weapon">
-            <img src="https://kommodo.ai/i/ESxz417xcdGaU5BHyAEY" alt="M4A1">
-            <h3>M4A1</h3>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Community • Operations • Readiness</span>
+        <h1 id="hero-heading" class="hero-title">SILO</h1>
+        <p class="hero-copy">Silent • Precise • Lethal — SILO brings tactical consistency, community training, and trusted support for every mission.</p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="#mission">View Mission</a>
+          <a class="button button--secondary" href="https://discord.gg/ewnvQXM2F7" target="_blank" rel="noopener">Join Discord</a>
         </div>
-        <div class="weapon">
-            <img src="https://kommodo.ai/i/2of4FIwOpImZWlU2a16c" alt="Colt Python">
-            <h3>Colt Python</h3>
+      </div>
+    </section>
+
+    <main>
+      <section id="mission" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Mission Statement</h2>
         </div>
-        <div class="weapon">
-            <img src="https://kommodo.ai/i/rCgOHlFDIjnLFiENBqiu" alt="Groza">
-            <h3>Groza</h3>
+        <div class="card-grid">
+          <article class="card">
+            <p>SILO is an elite tactical organization focused on reconnaissance, precision engagement, force protection, and operational excellence. Our members train continuously to ensure mission success through teamwork, discipline, and professionalism.</p>
+          </article>
         </div>
-        <div class="weapon">
-            <img src="https://kommodo.ai/i/fNIdkMkHYlcsDhLGnHck" alt="M110">
-            <h3>M110</h3>
+      </section>
+
+      <section id="divisions" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Divisions</h2>
         </div>
-        <div class="weapon">
-            <img src="https://via.placeholder.com/400x250?text=M110A4" alt="M110A4">
-            <h3>M110A4</h3>
+        <div class="card-grid">
+          <article class="card">
+            <ul>
+              <li>Special Reconnaissance Division (SRD)</li>
+              <li>1st Marksman Battalion (SRD)</li>
+              <li>1st Armored Warfare Battalion</li>
+              <li>101st Infantry Regiment</li>
+              <li>Air Assault Division</li>
+              <li>122nd Military Police Battalion</li>
+            </ul>
+          </article>
         </div>
-    </div>
-</section>
+      </section>
 
-<section id="tutorials">
-    <h2>Tutorials</h2>
-    <a class="tutorial-link" href="https://www.youtube.com/watch?v=ax9vPY1Pc6I&t=492s" target="_blank">Sniper Guide</a>
-    <a class="tutorial-link" href="https://www.youtube.com/watch?v=CQ1ntgD8714" target="_blank">How To Fly A Helicopter</a>
-    <a class="tutorial-link" href="https://www.youtube.com/watch?v=M8VozkKr3vo" target="_blank">Setting Up Your Rifle</a>
-    <a class="tutorial-link" href="https://www.youtube.com/watch?v=H3SlyFMLIEM" target="_blank">Loadout Guide</a>
-    <a class="tutorial-link" href="https://www.youtube.com/watch?v=AirkGYx5Mwk" target="_blank">HQ Guide</a>
-</section>
-
-<section id="news">
-    <h2>News</h2>
-    <!-- Copy one of these blocks and paste it here to add another news item -->
-    <div class="news-list">
-        <div class="news-item">
-            <h3>New SILO Operation Announced</h3>
-            <p>Former Co-lead of the old silo goosey has reopened silo for operations, reformed better than ever..</p>
+      <section id="weapons" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Weapons We Use</h2>
         </div>
-        <div class="news-item">
-            <h3>Recruitment Update</h3>
-            <p>Applications are now open for for all divisions. Contact the Commanding officer team for more information, or join us on Discord at <a href="https://discord.gg/ewnvQXM2F7" target="_blank">discord.gg/ewnvQXM2F7</a>.</p>
+        <div class="weapon-grid">
+          <article class="weapon-card">
+            <img src="https://kommodo.ai/i/ESxz417xcdGaU5BHyAEY" alt="M4A1" loading="lazy">
+            <div class="card-body"><h3>M4A1</h3></div>
+          </article>
+          <article class="weapon-card">
+            <img src="https://kommodo.ai/i/2of4FIwOpImZWlU2a16c" alt="Colt Python" loading="lazy">
+            <div class="card-body"><h3>Colt Python</h3></div>
+          </article>
+          <article class="weapon-card">
+            <img src="https://kommodo.ai/i/rCgOHlFDIjnLFiENBqiu" alt="Groza" loading="lazy">
+            <div class="card-body"><h3>Groza</h3></div>
+          </article>
+          <article class="weapon-card">
+            <img src="https://kommodo.ai/i/fNIdkMkHYlcsDhLGnHck" alt="M110" loading="lazy">
+            <div class="card-body"><h3>M110</h3></div>
+          </article>
+          <article class="weapon-card">
+            <img src="https://via.placeholder.com/400x250?text=M110A4" alt="M110A4" loading="lazy">
+            <div class="card-body"><h3>M110A4</h3></div>
+          </article>
         </div>
-    </div>
-    <!-- To add more news: copy the <div class="news-item"> block above, paste it inside .news-list, then change the title and description. -->
-</section>
+      </section>
 
-<footer>
-    © 2026 SILO Operations
-</footer>
+      <section id="tutorials" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Tutorials</h2>
+        </div>
+        <div class="news-grid">
+          <a class="tutorial-card" href="https://www.youtube.com/watch?v=ax9vPY1Pc6I&t=492s" target="_blank" rel="noopener"><div class="card-body"><h3>Sniper Guide</h3></div></a>
+          <a class="tutorial-card" href="https://www.youtube.com/watch?v=CQ1ntgD8714" target="_blank" rel="noopener"><div class="card-body"><h3>How To Fly A Helicopter</h3></div></a>
+          <a class="tutorial-card" href="https://www.youtube.com/watch?v=M8VozkKr3vo" target="_blank" rel="noopener"><div class="card-body"><h3>Setting Up Your Rifle</h3></div></a>
+          <a class="tutorial-card" href="https://www.youtube.com/watch?v=H3SlyFMLIEM" target="_blank" rel="noopener"><div class="card-body"><h3>Loadout Guide</h3></div></a>
+          <a class="tutorial-card" href="https://www.youtube.com/watch?v=AirkGYx5Mwk" target="_blank" rel="noopener"><div class="card-body"><h3>HQ Guide</h3></div></a>
+        </div>
+      </section>
+    </main>
 
-<script>
-let currentUser = null;
-try { currentUser = JSON.parse(localStorage.getItem('siloCurrentUser') || 'null'); } catch (e) { currentUser = null; }
-let broadcastChannel = null;
-try {
-    broadcastChannel = new BroadcastChannel('silo-sync');
-    broadcastChannel.onmessage = () => {
-        renderAllViews();
-    };
-} catch (e) {
-    // BroadcastChannel not available
-}
+    <footer>© 2026 SILO Operations</footer>
+  </div>
 
-window.addEventListener('storage', (event) => {
-    if (!event.key) return;
-    if (['siloNotes', 'siloPunishments', 'siloChats', 'siloCurrentUser', 'siloSync'].includes(event.key)) {
-        renderAllViews();
-    }
-});
-
-// staff access removed
-
-function uploadChat() {
-    const text = document.getElementById('chat-text').value.trim();
-    if (!text) {
-        alert('Enter the chat content before uploading.');
+  <script>
+    function accessAdmin() {
+      const username = prompt('Username:');
+      if (!username) {
+        alert('Access denied.');
         return;
-    }
-    const author = (currentUser && currentUser.username) ? currentUser.username : 'Guest';
-    const payload = { text, author, time: new Date().toLocaleString() };
-    const chats = getChats();
-    chats.unshift(payload);
-    saveChats(chats);
-    addBackendLog(`Chat uploaded by ${author}.`);
-    document.getElementById('chat-text').value = '';
-    renderChats();
-}
-
-
-function addBackendLog(message) {
-    const logs = JSON.parse(localStorage.getItem('siloBackendLog') || '[]');
-    logs.push({ time: new Date().toLocaleString(), message });
-    localStorage.setItem('siloBackendLog', JSON.stringify(logs.slice(-50)));
-}
-
-function getNotes() {
-    return JSON.parse(localStorage.getItem('siloNotes') || '[]');
-}
-
-function getPunishments() {
-    return JSON.parse(localStorage.getItem('siloPunishments') || '[]');
-}
-
-function broadcastSync() {
-    if (broadcastChannel) {
-        broadcastChannel.postMessage({ type: 'sync' });
-    }
-}
-
-function saveNotes(notes) {
-    localStorage.setItem('siloNotes', JSON.stringify(notes));
-    localStorage.setItem('siloSync', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
-    broadcastSync();
-}
-
-function savePunishments(punishments) {
-    localStorage.setItem('siloPunishments', JSON.stringify(punishments));
-    localStorage.setItem('siloSync', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
-    broadcastSync();
-}
-
-function getChats() {
-    return JSON.parse(localStorage.getItem('siloChats') || '[]');
-}
-
-function saveChats(chats) {
-    localStorage.setItem('siloChats', JSON.stringify(chats));
-    localStorage.setItem('siloSync', `${Date.now()}-${Math.random().toString(36).slice(2)}`);
-    broadcastSync();
-}
-
-function renderSearchResults() {
-    const searchField = document.getElementById('search-discord');
-    const query = searchField && searchField.value.trim().toLowerCase();
-    if (!query) {
+      }
+      const password = prompt('Password:');
+      if (!password) {
+        alert('Access denied.');
         return;
-    }
-    const result = document.getElementById('search-results');
-    const punishments = getPunishments().filter(item => item.discord.toLowerCase().includes(query));
-    if (!result) return;
-    if (!punishments.length) {
-        result.innerHTML = '<p>No punishments found for that Discord user.</p>';
+      }
+
+      let role = null;
+      if (username === 'Admin' && password === 'HK146GOOSE') {
+        role = 'Admin';
+      } else if (username === 'Operator' && password === 'GooseyCommander67!') {
+        role = 'Operator';
+      }
+
+      if (!role) {
+        alert('Invalid credentials.');
         return;
+      }
+
+      sessionStorage.setItem('siloRole', role);
+      window.location.href = 'admin.html';
     }
-    result.innerHTML = punishments.map(item => `
-        <div class="entry-card">
-            <strong>${item.discord}</strong> • ${item.time}
-            <p><strong>Uploaded by:</strong> ${item.author}</p>
-            <p><strong>Punishment:</strong> ${item.punishment}</p>
-            <p><strong>Supervisor:</strong> ${item.supervisor}</p>
-            <p><strong>Roblox:</strong> ${item.roblox}</p>
-            <p><strong>Notes:</strong> ${item.notes || 'None'}</p>
-        </div>
-    `).join('');
-}
-
-function renderAllViews() {
-    updateCurrentUserDisplay();
-    renderChats();
-    renderSearchResults();
-}
-
-function renderChats() {
-    const chats = getChats();
-    const adminContainer = document.getElementById('admin-chat-list');
-    const operatorContainer = document.getElementById('operator-chat-list');
-    if (adminContainer) {
-        if (!chats.length) {
-            adminContainer.innerHTML = '<p>No chats uploaded yet.</p>';
-        } else {
-            adminContainer.innerHTML = chats.map((chat, index) => `
-                <div class="entry-card">
-                    <strong>${chat.author}</strong> • ${chat.time}
-                    <p>${chat.text}</p>
-                    <button class="button" style="margin-top:10px; background:#ff5555;" onclick="deleteChat(${index})">Delete Chat</button>
-                </div>
-            `).join('');
-        }
-    }
-    if (operatorContainer) {
-        if (!chats.length) {
-            operatorContainer.innerHTML = '<p>No chats uploaded yet.</p>';
-        } else {
-            operatorContainer.innerHTML = chats.map(chat => `
-                <div class="entry-card">
-                    <strong>${chat.author}</strong> • ${chat.time}
-                    <p>${chat.text}</p>
-                </div>
-            `).join('');
-        }
-    }
-}
-
-function uploadChat() {
-    const text = document.getElementById('chat-text').value.trim();
-    if (!text) {
-        alert('Enter the chat content before uploading.');
-        return;
-    }
-    const author = (currentUser && currentUser.username) ? currentUser.username : 'Guest';
-    const payload = { text, author, time: new Date().toLocaleString() };
-    const chats = getChats();
-    chats.unshift(payload);
-    saveChats(chats);
-    addBackendLog(`Chat uploaded by ${author}.`);
-    document.getElementById('chat-text').value = '';
-    renderChats();
-}
-
-function deleteChat(index) {
-    const chats = getChats();
-    if (!chats[index]) {
-        return;
-    }
-    chats.splice(index, 1);
-    saveChats(chats);
-    renderChats();
-}
-
-function updateCurrentUserDisplay() {
-    const el = document.getElementById('current-user-display');
-    if (!el) return;
-    el.textContent = currentUser ? `Signed in as ${currentUser.username}` : 'Not signed in.';
-}
-
-// Notes and punishments UI removed; related render functions are no longer used.
-
-function updatePunishmentStatus(index, status) {
-    const punishments = getPunishments();
-    if (!punishments[index]) {
-        return;
-    }
-    punishments[index].status = status;
-    savePunishments(punishments);
-    renderAllViews();
-}
-
-function searchPunishments() {
-    const query = document.getElementById('search-discord').value.trim().toLowerCase();
-    const result = document.getElementById('search-results');
-    if (!query) {
-        result.innerHTML = '<p>Enter a Discord username to search.</p>';
-        return;
-    }
-
-    const punishments = getPunishments().filter(item => item.discord.toLowerCase().includes(query));
-    if (!punishments.length) {
-        result.innerHTML = '<p>No punishments found for that Discord user.</p>';
-        return;
-    }
-
-    result.innerHTML = punishments.map(item => `
-        <div class="entry-card">
-            <strong>${item.discord}</strong> • ${item.time}
-            <p><strong>Uploaded by:</strong> ${item.author}</p>
-            <p><strong>Punishment:</strong> ${item.punishment}</p>
-            <p><strong>Supervisor:</strong> ${item.supervisor}</p>
-            <p><strong>Roblox:</strong> ${item.roblox}</p>
-            <p><strong>Notes:</strong> ${item.notes || 'None'}</p>
-        </div>
-    `).join('');
-}
-
-// logout/staff logic removed
-</script>
-
+  </script>
 </body>
 </html>
